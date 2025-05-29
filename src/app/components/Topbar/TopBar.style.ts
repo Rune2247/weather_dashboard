@@ -29,7 +29,7 @@ export const styles = {
 		flex: 1
 	},
 	timeBox: {
-		textAlign: "right",
+		textAlign: "right" as const,
 		minWidth: 80,
 		lineHeight: 1.1
 	},

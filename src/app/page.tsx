@@ -20,12 +20,9 @@ export default function Home() {
 	const { weather, futureWeather, isLoading, error } = useWeather()
 
 	return (
-		<div
-			className="page"
-			style={styles.page}
-		>
+		<div style={styles.page}>
 			{isLoading && <p>Loading weather...</p>}
-			{error && <p style={{ color: "red" }}>{error}</p>}
+			{error !== null && <p style={{ color: "red" }}>{error}</p>}
 			{weather !== null && weather.current_weather && (
 				<div style={styles.weatherCards}>
 					<WeatherCard

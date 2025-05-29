@@ -1,3 +1,4 @@
+import { FutureWeatherApiResponse } from "@/types"
 import {
 	WiCloud,
 	WiDaySunny,
@@ -24,7 +25,7 @@ describe("willRainNextHour", () => {
 				weathercode: [0, 1]
 			}
 		}
-		expect(willRainNextHour(mock as any)).toBe(true)
+		expect(willRainNextHour(mock as FutureWeatherApiResponse)).toBe(true)
 	})
 
 	it("returns false if no precipitation in the next hour", () => {
@@ -38,7 +39,7 @@ describe("willRainNextHour", () => {
 				weathercode: [0, 1]
 			}
 		}
-		expect(willRainNextHour(mock as any)).toBe(false)
+		expect(willRainNextHour(mock as FutureWeatherApiResponse)).toBe(false)
 	})
 
 	it("returns false if no future hour is found", () => {
@@ -51,7 +52,7 @@ describe("willRainNextHour", () => {
 				weathercode: [0]
 			}
 		}
-		expect(willRainNextHour(mock as any)).toBe(false)
+		expect(willRainNextHour(mock as FutureWeatherApiResponse)).toBe(false)
 	})
 })
 

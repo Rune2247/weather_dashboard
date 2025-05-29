@@ -15,17 +15,16 @@ import { styles } from "./ForecastChart.style"
 // Helper to aggregate hourly data for the chart
 function getHourlyData(futureWeather: FutureWeatherApiResponse) {
 	const dataPoints = futureWeather.hourly.time.map((time, index) => {
-		const dateObj = new Date(time)
-		const weekday = dateObj.toLocaleDateString("en-UK", { weekday: "long" })
+		const dateObject = new Date(time)
+		const weekday = dateObject.toLocaleDateString("en-UK", { weekday: "long" })
 		return {
 			date: weekday,
-			hour: dateObj.getHours(),
+			hour: dateObject.getHours(),
 			time,
 			temp: futureWeather.hourly.temperature_2m[index]
 		}
 	})
 
-	dataPoints.push(dataPoints[dataPoints.length - 1])
 	return dataPoints
 }
 

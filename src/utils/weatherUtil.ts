@@ -29,7 +29,7 @@ export function willRainNextHour(
 }
 
 /**
- * Translates a weather code into a human-readable weather condition, icon, and title.
+ * Maps a weather code into a human-readable weather condition, icon, and title.
  *
  * @param weatherCode - The numeric weather code from the API.
  * @source https://www.meteomatics.com/en/api/available-parameters/weather-parameter/general-weather-state/

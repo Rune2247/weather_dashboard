@@ -21,7 +21,7 @@ export const TopBar: React.FC = () => {
 		return () => clearInterval(interval)
 	}, [])
 
-	const pad = (n: number) => n.toString().padStart(2, "0")
+	const pad = (number: number) => number.toString().padStart(2, "0")
 	const time = `${pad(now.getHours())}:${pad(now.getMinutes())}`
 	const date = `${pad(now.getDate())}-${pad(
 		now.getMonth() + 1
@@ -31,7 +31,7 @@ export const TopBar: React.FC = () => {
 		<header style={{ ...styles.header, position: "fixed", top: 0, left: 0 }}>
 			<WeatherIcon />
 			<span style={styles.title}>Weather Dashboard</span>
-			<div style={{ ...styles.timeBox, textAlign: "right" }}>
+			<div style={styles.timeBox}>
 				<div style={styles.time}>{time}</div>
 				<div style={styles.date}>{date}</div>
 			</div>

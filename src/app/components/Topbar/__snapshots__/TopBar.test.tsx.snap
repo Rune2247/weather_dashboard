@@ -27,7 +27,7 @@ exports[`TopBar should match snapshot 1`] = `
         <div
           style="font-size: 18px; font-weight: 600;"
         >
-          17:59
+          18:15
         </div>
         <div
           style="font-size: 13px; color: rgb(136, 136, 136);"

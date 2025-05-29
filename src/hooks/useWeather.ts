@@ -41,7 +41,7 @@ export function useWeather() {
 		}
 
 		fetchWeather()
-		const interval = setInterval(fetchWeather, 25 * 60 * 1000)
+		const interval = setInterval(fetchWeather, 30 * 60 * 1000)
 
 		return () => clearInterval(interval)
 	}, [])

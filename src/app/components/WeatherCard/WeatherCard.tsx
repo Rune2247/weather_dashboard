@@ -24,7 +24,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
 				<div style={styles.title}>{title}</div>
 				<div style={styles.value}>
 					{value}
-					{unit && <span style={styles.unit}>{unit}</span>}
+					{unit !== undefined && <span style={styles.unit}>{unit}</span>}
 				</div>
 			</div>
 		</div>
