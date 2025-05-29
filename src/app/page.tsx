@@ -1,95 +1,80 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import { ForecastChart } from "@/app/components/ForecastChart/ForecastChart"
+import { WeatherCard } from "@/app/components/WeatherCard/WeatherCard"
+import { useWeather } from "@/hooks/useWeather"
+import {
+	translateCondition,
+	willRainNextHour,
+	windDirectionToCompass
+} from "@/utils/weatherUtil"
+import {
+	WiDaySunny,
+	WiDirectionUp,
+	WiRain,
+	WiStrongWind,
+	WiThermometer
+} from "react-icons/wi"
+import { styles } from "./page.style"
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+	const { weather, futureWeather, isLoading, error } = useWeather()
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+	return (
+		<div
+			className="page"
+			style={styles.page}
+		>
+			{isLoading && <p>Loading weather...</p>}
+			{error && <p style={{ color: "red" }}>{error}</p>}
+			{weather !== null && weather.current_weather && (
+				<div style={styles.weatherCards}>
+					<WeatherCard
+						title="Current Weather"
+						value={
+							translateCondition(weather.current_weather.weathercode)
+								.description
+						}
+						icon={translateCondition(weather.current_weather.weathercode).icon}
+					/>
+					<WeatherCard
+						title="Temperature"
+						value={weather.current_weather.temperature}
+						unit="°C"
+						icon={WiThermometer}
+					/>
+					<WeatherCard
+						title="Wind Speed"
+						value={weather.current_weather.windspeed}
+						unit="km/h"
+						icon={WiStrongWind}
+					/>
+					<WeatherCard
+						title="Wind Direction"
+						value={`${windDirectionToCompass(
+							weather.current_weather.winddirection
+						)} (${weather.current_weather.winddirection}°)`}
+						icon={WiDirectionUp}
+					/>
+					<WeatherCard
+						title="Can we go to crossfit?"
+						value={
+							futureWeather
+								? willRainNextHour(futureWeather)
+									? "No, it will rain!"
+									: "Yes, go for it!"
+								: "-"
+						}
+						icon={
+							futureWeather && willRainNextHour(futureWeather)
+								? WiRain
+								: WiDaySunny
+						}
+					/>
+				</div>
+			)}
+			{futureWeather !== null && futureWeather.hourly && (
+				<ForecastChart futureWeather={futureWeather} />
+			)}
+		</div>
+	)
 }
