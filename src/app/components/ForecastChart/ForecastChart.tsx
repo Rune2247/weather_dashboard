@@ -34,19 +34,7 @@ export const ForecastChart: React.FC<{
 }> = ({ futureWeather }) => {
 	const data = getHourlyData(futureWeather)
 
-	// Get unique weekday names from the data for ticks
 	const ticks = Array.from(new Set(data.map((d) => d.date)))
-	// Add the next weekday after the last one
-	if (ticks.length > 0) {
-		const lastDateObj = new Date(
-			futureWeather.hourly.time[futureWeather.hourly.time.length - 1]
-		)
-		lastDateObj.setDate(lastDateObj.getDate() + 1)
-		const nextWeekday = lastDateObj.toLocaleDateString("en-UK", {
-			weekday: "long"
-		})
-		ticks.push(nextWeekday)
-	}
 
 	return (
 		<div style={styles.container}>
