@@ -37,7 +37,10 @@ export const ForecastChart: React.FC<{
 	const ticks = Array.from(new Set(data.map((d) => d.date)))
 
 	return (
-		<div style={styles.container}>
+		<div
+			style={styles.container}
+			data-testid="forecast-chart"
+		>
 			<ResponsiveContainer
 				width="100%"
 				height="100%"

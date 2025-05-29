@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopBar should match snapshot 1`] = `
+<body>
+  <div>
+    <header
+      style="width: 100vw; background: rgb(255, 255, 255); color: rgb(34, 34, 34); box-shadow: 0 2px 8px rgba(0,0,0,0.04); padding: 0.75rem 2rem; display: flex; align-items: center; position: fixed; top: 0px; left: 0px; z-index: 100; min-height: 56px; font-weight: 600; font-size: 1.35rem; letter-spacing: 0.5px; border-bottom: 1px solid #eee;"
+    >
+      <span
+        style="font-size: 28px; margin-right: 16px; display: flex; align-items: center;"
+      >
+        <span
+          aria-label="weather"
+          role="img"
+        >
+          ☀️
+        </span>
+      </span>
+      <span
+        style="flex: 1;"
+      >
+        Weather Dashboard
+      </span>
+      <div
+        style="text-align: right; min-width: 80px; line-height: 1.1;"
+      >
+        <div
+          style="font-size: 18px; font-weight: 600;"
+        >
+          17:59
+        </div>
+        <div
+          style="font-size: 13px; color: rgb(136, 136, 136);"
+        >
+          29-05-2025
+        </div>
+      </div>
+    </header>
+  </div>
+</body>
+`;
