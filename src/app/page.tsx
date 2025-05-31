@@ -53,12 +53,12 @@ export default function Home() {
 						icon={WiDirectionUp}
 					/>
 					<WeatherCard
-						title="Can we go to crossfit?"
+						title="Will I need an umbrella Right Now?"
 						value={
 							futureWeather
 								? willRainNextHour(futureWeather)
-									? "No, it will rain!"
-									: "Yes, go for it!"
+									? "Yes, rain is on the way."
+									: "No, you can leave it at home!"
 								: "-"
 						}
 						icon={
