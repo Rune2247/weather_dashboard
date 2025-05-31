@@ -24,6 +24,19 @@ jest.mock("../hooks/useWeather", () => ({
 	})
 }))
 
+beforeAll(() => {
+	global.ResizeObserver = class {
+		observe() {}
+		unobserve() {}
+		disconnect() {}
+	}
+	if (typeof window !== "undefined") {
+		window.ResizeObserver = global.ResizeObserver
+		window.console.warn = () => {}
+		window.console.error = () => {}
+	}
+})
+
 describe("Home page", () => {
 	it("should render all weather cards", () => {
 		render(<Home />)

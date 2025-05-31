@@ -8,11 +8,15 @@ Requirements for running app:
 
 How to start the app for production:
 
-- docker build -t weather_dashboard_rlf .
+```sh
+# Build the Docker image
+docker build -t weather_dashboard .
 
-- docker run -p 3000:3000 weather_dashboard_rlf
+# Run the Docker container
+docker run -p 3000:3000 weather_dashboard
+```
 
 How to run tests
 
 - Make sure you have installed all packages with yarn
-- Execute yarn test in your terminal
+- Execute `yarn test` in your terminal

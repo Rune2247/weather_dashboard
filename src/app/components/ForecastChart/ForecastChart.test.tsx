@@ -233,7 +233,6 @@ beforeAll(() => {
 		disconnect() {}
 	}
 	if (typeof window !== "undefined") {
-		// @ts-ignore
 		window.ResizeObserver = global.ResizeObserver
 		window.console.warn = () => {}
 		window.console.error = () => {}

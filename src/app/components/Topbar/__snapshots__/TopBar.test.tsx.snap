@@ -21,20 +21,6 @@ exports[`TopBar should match snapshot 1`] = `
       >
         Weather Dashboard
       </span>
-      <div
-        style="text-align: right; min-width: 80px; line-height: 1.1;"
-      >
-        <div
-          style="font-size: 18px; font-weight: 600;"
-        >
-          18:15
-        </div>
-        <div
-          style="font-size: 13px; color: rgb(136, 136, 136);"
-        >
-          29-05-2025
-        </div>
-      </div>
     </header>
   </div>
 </body>

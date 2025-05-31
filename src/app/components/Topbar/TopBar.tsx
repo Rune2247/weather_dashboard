@@ -13,7 +13,11 @@ const WeatherIcon = () => (
 	</span>
 )
 
-export const TopBar: React.FC = () => {
+interface TopBarProps {
+	showClock?: boolean
+}
+
+export const TopBar: React.FC<TopBarProps> = ({ showClock = true }) => {
 	const [now, setNow] = useState(new Date())
 
 	useEffect(() => {
@@ -31,10 +35,12 @@ export const TopBar: React.FC = () => {
 		<header style={{ ...styles.header, position: "fixed", top: 0, left: 0 }}>
 			<WeatherIcon />
 			<span style={styles.title}>Weather Dashboard</span>
-			<div style={styles.timeBox}>
-				<div style={styles.time}>{time}</div>
-				<div style={styles.date}>{date}</div>
-			</div>
+			{showClock && (
+				<div style={styles.timeBox}>
+					<div style={styles.time}>{time}</div>
+					<div style={styles.date}>{date}</div>
+				</div>
+			)}
 		</header>
 	)
 }

@@ -16,22 +16,30 @@ export function useWeather() {
 			setIsLoading(true)
 			let currentData: CurrentWeatherApiResponse | null = null
 			let futureData: FutureWeatherApiResponse | null = null
-			let errors: string[] = []
+			const errors: string[] = []
 
 			try {
 				const res = await fetch("/api/weather/current")
 				if (!res.ok) throw new Error("Failed to fetch current weather data")
 				currentData = await res.json()
-			} catch (err: any) {
-				errors.push(err.message)
+			} catch (err) {
+				if (err instanceof Error) {
+					errors.push(err.message)
+				} else {
+					errors.push(String(err))
+				}
 			}
 
 			try {
 				const res = await fetch("/api/weather/future")
 				if (!res.ok) throw new Error("Failed to fetch future weather data")
 				futureData = await res.json()
-			} catch (err: any) {
-				errors.push(err.message)
+			} catch (err) {
+				if (err instanceof Error) {
+					errors.push(err.message)
+				} else {
+					errors.push(String(err))
+				}
 			}
 
 			setWeather(currentData)

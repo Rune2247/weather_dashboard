@@ -73,14 +73,12 @@ export const ForecastChart: React.FC<{
 						padding={{ top: 8, bottom: 8 }}
 					/>
 					<Tooltip
-						formatter={(value: number, name: string, props: any) => [
-							`${value}°C`,
-							"Temperature"
-						]}
-						labelFormatter={(label: string, payload: any) => {
+						formatter={(value: number) => [`${value}°C`, "Temperature"]}
+						labelFormatter={(label: string, payload: unknown[]) => {
 							if (!payload || payload.length === 0) return label
-							const { payload: point } = payload[0]
-							return `${label} ${point.hour}:00`
+							const first = payload[0] as { payload?: { hour?: number } }
+							const point = first.payload || {}
+							return `${label} ${point.hour ?? ""}:00`
 						}}
 					/>
 					<Line
